@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="./Public/Admin/Css/public.css" rel="stylesheet" type="text/css" />
+<title>用户管理</title>
+<script type="text/javascript">
+//定义JS验证的函数
+function checkForm()
+{
+	//定义验证的正则表达式
+	var pattern1 = /^[a-zA-Z0-9]{5,15}$/; //只允许字母数字5－15位
+	var pattern2 = /^[\u4e00-\u9fa5]{2,3}$/; //中文姓名
+	var pattern3 = /^[0-9]{11}$/; //手机号
+
+	//表单验证
+	if(!pattern1.test(document.form1.username.value))
+	{
+		window.alert("用户名没有输入或格式不正确！");
+		document.form1.username.focus(); //定位光标
+		return false; //阻止表单提交
+	}else if(!pattern1.test(document.form1.password.value))
+	{
+		window.alert("密码没有输入或格式不正确！");
+		document.form1.password.focus(); //定位光标
+		return false; //阻止表单提交
+	}else if(document.form1.password.value!=document.form1.confirmpwd.value)
+	{
+		window.alert("两次输入的密码不一致！");
+		document.form1.password.focus(); //定位光标
+		return false; //阻止表单提交		
+	}else if(!pattern2.test(document.form1.name.value))
+	{
+		window.alert("真实姓名没有输入或格式不正确！");
+		document.form1.name.focus(); //定位光标
+		return false; //阻止表单提交
+	}else if(!pattern3.test(document.form1.tel.value))
+	{
+		window.alert("手机号没有输入或格式不正确！");
+		document.form1.tel.focus(); //定位光标
+		return false; //阻止表单提交
+	}
+}
+</script>
+</head>
+
+<body leftmargin="2" topmargin="0" marginwidth="0" marginheight="0" oncontextmenu="self.event.returnValue=false">
+<noscript><iframe src=*.html></iframe></noscript>
+<table width="100%" border="0" align="center" cellpadding="1" cellspacing="1" class="border">
+	<tr class="topbg"><td>用户管理</td></tr>
+	<tr class="tdbg">
+	  <td height="30">&nbsp;&nbsp;
+	  	<a href="?c=User&a=index">管理首页</a>&nbsp;|&nbsp;
+	  	<a href="?c=User&a=add">添加用户</a></td>
+	</tr>
+</table>
+<br />
+<form id="form1" name="form1" method="post" action="?c=User&a=insert" onSubmit="return checkForm()">
+<table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="border">
+	<tr class="title">
+		<td colspan="2" align="center">添加用户</td>
+	</tr>
+	<tr class="tdbg">
+		<td width="15%" height="30" align="right">用户名称：</td>
+		<td width="85%">
+			<input name="username" type="text" id="username" size="20" maxlength="15" />
+			<font color="#FF0000">*</font>
+			<font color="#666666">长度为5-15位（字母、数字），不能含有特殊符号</font>
+		</td>
+	</tr>
+	<tr class="tdbg">
+		<td height="30" align="right">用户密码：</td>
+		<td>
+			<input name="password" type="password" id="password" size="20" maxlength="15" />
+			<font color="#FF0000">*</font>
+			<font color="#666666">长度为5-15位（字母、数字），不能含有特殊符号</font>
+		</td>
+	</tr>
+	<tr class="tdbg">
+		<td height="30" align="right">确认密码：</td>
+		<td>
+			<input name="confirmpwd" type="password" id="confirmpwd" size="20" maxlength="15" />
+			<font color="#FF0000">*</font>
+			<font color="#666666">两次输入的密码必须一致</font>
+		</td>
+	</tr>
+	<tr class="tdbg">
+		<td height="30" align="right">真实姓名：</td>
+		<td>
+			<input name="name" type="text" id="name" size="20" maxlength="15" />
+			<font color="#FF0000">*</font> <font color="#666666">你的姓名</font>
+		</td>
+	</tr>
+	<tr class="tdbg">
+		<td height="30" align="right">联系方式：</td>
+		<td>
+			<input name="tel" type="text" id="tel" size="20" maxlength="20" />
+			<font color="#FF0000">*</font> 
+			<font color="#666666">例如：13671181498 或 010-12345678</font>
+		</td>
+	</tr>
+	<tr class="tdbg">
+		<td height="30" align="right">账号状态：</td>
+		<td>
+			<input name="status" type="radio" value="1" checked="checked" />正常
+			<input type="radio" name="status" value="0" />停用
+		</td>
+	</tr>
+	<tr class="tdbg">
+		<td height="30" align="right">角色：</td>
+		<td>
+			<select name="role">
+				<option value="1" selected="selected">超级管理员</option>
+				<option value="0">普通管理员</option>
+			</select>
+		</td>
+	</tr>
+	<tr class="tdbg">
+		<td height="30" align="right">&nbsp;</td>
+		<td>
+			<input type="submit" value="提交" />
+			<input type="button" onclick="history.go(-1)" value="返回" />
+		</td>
+	</tr>
+</table>
+</form>
+</body>
+</html>
